@@ -1,0 +1,87 @@
+﻿<Page x:Class="UP01.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:UP01.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      d:Background="White"
+      Title="Авторизация">
+
+
+    <Grid Width="400"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          Margin="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Авторизация"
+                   FontWeight="Black"
+                   HorizontalAlignment="Center"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Style="{DynamicResource ResourceKey=Title}"
+                   Margin="5,5,5,20" />
+
+        <TextBlock Text="Логин:"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,10,10" />
+
+        <TextBox x:Name="TextBoxLogin"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 d:Text="test"
+                 Text="94d5ous@gmail.com"
+                 FontFamily="Times New Roman"
+                 ToolTip="Введите логин"
+                 VerticalContentAlignment="Center"
+                 Margin="0,0,0,10" />
+
+        <TextBlock Text="Пароль:"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,10,10" />
+
+        <PasswordBox x:Name="PasswordBoxPassword"
+                     d:Password="1234"
+                     Password="uzWC67"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     VerticalContentAlignment="Center"
+                     ToolTip="Введите пароль"
+                     Margin="0,0,0,10" />
+
+        <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Content="Войти"
+                Click="ButtonEnter_Click" />
+
+        <Button x:Name="ButtonGuest"
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                Content="Зайти как гость"
+                Click="ButtonGuest_Click"
+                ToolTip="Экран просмотра товаров" />
+    </Grid>
+</Page>
