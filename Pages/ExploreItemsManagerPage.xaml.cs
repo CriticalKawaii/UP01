@@ -152,41 +152,30 @@ namespace UP01.Pages
 
         private void LoadProducts()
         {
-            var Items = DBEntities.GetContext().Items.ToList();
-
-            var currentItems = Items.Select(i => new
+            try
             {
-                i.ID,
-                i.Article,
-                i.Types.Type,
-                i.Units.Unit,
-                i.Price,
-                i.Suppliers.Supplier,
-                i.Manufacturers.Manufacturer,
-                i.Categories.Category,
-                i.Stock,
-                i.Discount,
-                i.Description,
-                i.Photo
-            }).ToList()
-            .Select(i => new
+                allItems = DBEntities.GetContext().Items.Select(i => new
+                {
+                    i.ID,
+                    i.Article,
+                    i.Types.Type,
+                    i.Units.Unit,
+                    i.Price,
+                    i.Suppliers.Supplier,
+                    i.Manufacturers.Manufacturer,
+                    i.Categories.Category,
+                    i.Stock,
+                    i.Discount,
+                    i.Description,
+                    i.Photo
+                });
+                ApplyFilters();
+            }
+            catch (Exception ex)
             {
-                i.Category,
-                i.Type,
-                i.Description,
-                i.Manufacturer,
-                i.Supplier,
-                i.Unit,
-                i.Stock,
-                i.Discount,
-                Price = i.Price.ToString("0"),
-                FinalPrice = i.Discount > 0 ? (i.Price - (i.Price * i.Discount / 100)).ToString("0") : i.Price.ToString("0"),
-                Photo = string.IsNullOrWhiteSpace(i.Photo) ? null : $"/Resources/{i.Photo}",
-                OldPriceVisibility = (i.Discount > 0) ? Visibility.Visible : Visibility.Collapsed,
-                HasBigDiscount = i.Discount >= 15
-            }).ToList();
-
-            ListViewItems.ItemsSource = currentItems;
+                MessageBox.Show($"Ошибка при загрузке товаров: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CleanButton_Click(object sender, RoutedEventArgs e)
