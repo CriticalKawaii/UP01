@@ -22,6 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Content="Назад"
+                x:Name="ButtonBack"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 IsCancel="True"
@@ -44,6 +45,7 @@
 
         <Frame x:Name="MainFrame"
                Grid.Row="1"
+               Navigated="MainFrame_Navigated"
                Grid.ColumnSpan="3"
                NavigationUIVisibility="Hidden" />
     </Grid>

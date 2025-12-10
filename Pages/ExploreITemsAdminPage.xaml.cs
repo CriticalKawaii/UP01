@@ -167,12 +167,34 @@ namespace UP01.Pages
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new EditItemPage(null));
         }
 
         private void EditProductButton_Click(object sender, RoutedEventArgs e)
         {
+            var button = (Button)sender;
+            var itemId = (int)button.Tag;
 
+            try
+            {
+                var context = DBEntities.GetContext();
+                var item = context.Items.FirstOrDefault(i => i.ID == itemId);
+
+                if (item != null)
+                {
+                    NavigationService.Navigate(new EditItemPage(item));
+                }
+                else
+                {
+                    MessageBox.Show("Товар не найден", "Ошибка",
+                                  MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при открытии товара: {ex.Message}", "Ошибка",
+                              MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)

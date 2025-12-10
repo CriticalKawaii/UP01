@@ -49,7 +49,7 @@ namespace UP01.Pages
                 FinalPrice = i.Discount > 0 ? (i.Price - (i.Price*i.Discount/100)).ToString("0") : i.Price.ToString("0"),
                 Photo = string.IsNullOrWhiteSpace(i.Photo) ? null : $"/Resources/{i.Photo}",
                 OldPriceVisibility = (i.Discount > 0) ? Visibility.Visible : Visibility.Collapsed,
-                HasBigDiscount = i.Discount > 15 
+                HasBigDiscount = i.Discount >= 15 
             }).ToList();
 
             ListViewItems.ItemsSource = currentItems;

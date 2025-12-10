@@ -25,6 +25,11 @@ namespace UP01
         {
             InitializeComponent();
             MainFrame?.Navigate(new AuthorizationPage());
+
+            if (MainFrame.CanGoBack)
+                ButtonBack.Visibility = Visibility.Visible;
+            else
+                ButtonBack.Visibility = Visibility.Hidden;
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -41,6 +46,14 @@ namespace UP01
                 e.Cancel = true;
             else
                 e.Cancel = false;
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+                ButtonBack.Visibility = Visibility.Visible;
+            else
+                ButtonBack.Visibility = Visibility.Hidden;
         }
     }
 }
