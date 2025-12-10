@@ -17,7 +17,7 @@
 
         <DockPanel Background="#7FFF00"
                    Height="60">
-            <TextBlock Text="Управление товарами"
+            <TextBlock Text="Администрирование"
                        Style="{DynamicResource ResourceKey=Title}"
                        VerticalAlignment="Center"
                        Margin="20,0" />
@@ -42,7 +42,9 @@
                       Width="150"
                       Height="30"
                       ToolTip="Фильтр по категории"
-                      SelectionChanged="CategoryFilterComboBox_SelectionChanged" />
+                      SelectionChanged="CategoryFilterComboBox_SelectionChanged"
+                      Margin="5,0,5,0"
+                      SelectedIndex="0" />
             <ComboBox x:Name="SortComboBox"
                       Width="150"
                       Height="30"
@@ -56,13 +58,15 @@
             </ComboBox>
             <Button Content="Добавить товар"
                     Click="AddProductButton_Click" />
-            <Button Content="Обновить"
-                    Click="RefreshButton_Click" />
+
+            <Button Content="Очистить фильтры"
+                    Click="CleanButton_Click" />
         </StackPanel>
 
         <ListView Grid.Row="2"
                   x:Name="ProductsListView"
                   Margin="10"
+                  MouseDoubleClick="ProductsListView_MouseDoubleClick"
                   d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.View>
                 <GridView>
@@ -104,19 +108,13 @@
                     <GridViewColumn Header="На складе"
                                     Width="80"
                                     DisplayMemberBinding="{Binding Stock}" />
-                    <GridViewColumn Header="Действия">
+                    <GridViewColumn Header="Удалить">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="✏️"
-                                            ToolTip="Редактировать"
-                                            Click="EditProductButton_Click"
-                                            Tag="{Binding ID}" />
-                                    <Button Content="❌"
-                                            ToolTip="Удалить"
-                                            Click="DeleteProductButton_Click"
-                                            Tag="{Binding ID}" />
-                                </StackPanel>
+                                <Button Content="❌"
+                                        ToolTip="Удалить"
+                                        Click="DeleteProductButton_Click"
+                                        Tag="{Binding ID}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

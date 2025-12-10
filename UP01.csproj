@@ -95,6 +95,9 @@
     <Compile Include="Pages\ExploreITemsAdminPage.xaml.cs">
       <DependentUpon>ExploreITemsAdminPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ExploreItemsManagerPage.xaml.cs">
+      <DependentUpon>ExploreItemsManagerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExploreItemsPage.xaml.cs">
       <DependentUpon>ExploreItemsPage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ExploreITemsAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ExploreItemsManagerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

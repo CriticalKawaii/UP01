@@ -55,7 +55,7 @@ namespace UP01.Pages
                         }
                         else if (user.RoleID == 2) 
                         {
-                            mainWindow.MainFrame.Navigate(new ExploreItemsPage());
+                            mainWindow.MainFrame.Navigate(new ExploreItemsManagerPage($"{user.LastName} {user.FirstName} {user.PaternityName}"));
                         }
                         else
                         {

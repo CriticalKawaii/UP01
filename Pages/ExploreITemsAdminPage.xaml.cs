@@ -160,11 +160,6 @@ namespace UP01.Pages
             ApplyFilters();
         }
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadProducts();
-        }
-
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EditItemPage(null));
@@ -226,6 +221,44 @@ namespace UP01.Pages
                     MessageBox.Show($"Ошибка при удалении товара: {ex.Message}", "Ошибка",
                                   MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void CleanButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchTextBox.Text = string.Empty;
+            CategoryFilterComboBox.SelectedIndex = 0;
+            SortComboBox.SelectedIndex = -1;
+            ApplyFilters();
+        }
+
+        private void ProductsListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ProductsListView.SelectedItem == null)
+                return;
+
+            dynamic selected = ProductsListView.SelectedItem;
+            int id = selected.ID;
+
+            try
+            {
+                var context = DBEntities.GetContext();
+                var item = context.Items.FirstOrDefault(i => i.ID == id);
+
+                if (item != null)
+                {
+                    NavigationService.Navigate(new EditItemPage(item));
+                }
+                else
+                {
+                    MessageBox.Show("Товар не найден", "Ошибка",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при открытии товара: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
